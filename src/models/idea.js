@@ -33,7 +33,7 @@ ideaSchema.statics.random = async function () {
     try {
         const count = await Idea.countDocuments().exec()
         const random = Math.floor(Math.random() * count)
-        const idea = await Idea.findOne().skip(random).exec()
+        const idea = await Idea.findOne({ status: IDEA_STATUSES.ACCEPTED }).skip(random).exec()
 
         return idea
     } catch (error) {

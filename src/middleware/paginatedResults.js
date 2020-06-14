@@ -18,9 +18,6 @@ function paginatedResults(model) {
 
         try {
             results.results = await model.find(req.query.filterBy ? JSON.parse(req.query.filterBy) : {}).limit(limit).skip(startIndex).exec()
-            console.log("req.query.filterBy", req.query.filterBy)
-            console.log(results.results)
-
             if (!results.results.length) return res.status(404).send({ message: 'No results found' })
             res.paginatedResults = results
             next()
